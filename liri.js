@@ -1,9 +1,11 @@
 require('dotenv').config();
-const keys = require('./keys.js');
 const fs = require('fs');
-const Spotify = require('node-spotify-api');
-const axios = require('axios');
-const moment = require('moment');
+// require our helper functions
+const {
+  searchSpotify,
+  searchOMDB,
+  searchBandsInTown
+} = require('./utils/helpers');
 
 const command = process.argv[2];
 // searches might be multiple words so we have to turn anything from the 3rd index on in the array into a single string
@@ -29,109 +31,7 @@ const dispatch = (command, searchTerm) => {
   }
 };
 
-// spotify function doesn't need to be defined as async because node-spotify-api accepts a callback in its search method.
-const searchSpotify = searchTerm => {
-  const spotify = new Spotify(keys.spotify);
-  //if there is no song input then default to Lithium
-  if (!searchTerm) {
-    searchTerm = 'Lithium';
-  }
-
-  // the params object to pass into spotify search method. Defining it as a variable to make it easier to read
-  const params = {
-    type: 'track',
-    query: searchTerm
-  };
-
-  // our callback function to pass into spotify search method which will handle printing data to the console.
-  const action = (err, data) => {
-    // if there's an error stop the code from running
-    if (err) {
-      throw err;
-    }
-    const { items } = data.tracks;
-
-    items.forEach(song => {
-      const dataString = `
-      Artist(s): ${song.artists.map(artist => artist.name)}
-      Song: ${song.name}
-      Preview URL: ${song.preview_url}
-      Album: ${song.album.name}
-          `;
-      // artists come back as an array of objects, we can use map to only get the name
-      console.log(dataString);
-      logDataToFile('spotifyLog.txt', dataString);
-    });
-  };
-  // call spotify method with the parameters and action to run.
-  spotify.search(params, action);
-};
-
-// axios returns a promise but we can use async await to make our code read more like
-// synchronous code
-// define your function as async and you await your async action inside the function.
-const searchOMDB = async searchTerm => {
-  if (!searchTerm) {
-    searchTerm = 'Mr Nobody';
-  }
-  const url = `http://www.omdbapi.com/?t=${searchTerm}&y=&plot=short&apikey=ee5329ae`;
-
-  try {
-    // await a response from omdb using axios and store it in a variable
-    const response = await axios.get(url);
-    // all the good stuff is in data this is the same as saying const data = response.data.
-    // instead we use object destructuring to grab the data object from response and store it in a variable
-    const { data } = response;
-    const dataString = `
-    Title: ${data.Title}
-    Year: ${data.Year}
-    IMDB Rating: ${data.imdbRating}
-    Country: ${data.Country}
-    Language: ${data.Language}
-    Plot: ${data.Plot}
-    Actors: ${data.Actors}
-    `;
-    console.log(dataString);
-    logDataToFile('movieLog.txt', dataString);
-  } catch (err) {
-    // log errors if there is an error
-    console.log(err);
-  }
-};
-
-const searchBandsInTown = async searchTerm => {
-  if (!searchTerm) {
-    searchTerm = 'Weezer';
-  }
-
-  const url = `https://rest.bandsintown.com/artists/${searchTerm}/events?app_id=codingbootcamp`;
-  // try block is basically your .then
-  try {
-    const response = await axios.get(url);
-    const { data } = response;
-
-    data.forEach(concert => {
-      const date = moment(concert.datetime, 'YYYY-MM-DDTHH:mm:ss').format(
-        'MM/DD/YYYY'
-      );
-
-      const dataString = `
-      Lineup: ${concert.lineup.join(', ')}
-      Venue: ${concert.venue.name}
-      Location: ${concert.venue.city}, ${concert.venue.region}, ${
-        concert.venue.country
-      }
-      Date: ${date}
-      `;
-      console.log(dataString);
-      logDataToFile('concertLog.txt', dataString);
-    });
-    // catch is basically your .catch
-  } catch (err) {
-    console.log(err);
-  }
-};
-
+// need to leave this here because we don't export dispatch
 const doWhatItSays = () => {
   fs.readFile('random.txt', 'utf8', (err, data) => {
     console.log(data);
@@ -150,16 +50,6 @@ const doWhatItSays = () => {
     } else {
       console.log('too many words for liri to understand.');
     }
-  });
-};
-
-const logDataToFile = (fileName, data) => {
-  fs.appendFile(fileName, data, err => {
-    if (err) {
-      return console.log(err);
-    }
-
-    console.log(`${fileName} was updated`);
   });
 };
 
