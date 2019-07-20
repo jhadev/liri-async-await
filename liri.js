@@ -52,13 +52,15 @@ const searchSpotify = searchTerm => {
     const { items } = data.tracks;
 
     items.forEach(song => {
+      const dataString = `
+      Artist(s): ${song.artists.map(artist => artist.name)}
+      Song: ${song.name}
+      Preview URL: ${song.preview_url}
+      Album: ${song.album.name}
+          `;
       // artists come back as an array of objects, we can use map to only get the name
-      console.log(`
-  Artist(s): ${song.artists.map(artist => artist.name)}
-  Song: ${song.name}
-  Preview URL: ${song.preview_url}
-  Album: ${song.album.name}
-      `);
+      console.log(dataString);
+      logDataToFile('spotifyLog.txt', dataString);
     });
   };
   // call spotify method with the parameters and action to run.
@@ -80,7 +82,7 @@ const searchOMDB = async searchTerm => {
     // all the good stuff is in data this is the same as saying const data = response.data.
     // instead we use object destructuring to grab the data object from response and store it in a variable
     const { data } = response;
-    console.log(`
+    const dataString = `
     Title: ${data.Title}
     Year: ${data.Year}
     IMDB Rating: ${data.imdbRating}
@@ -88,7 +90,9 @@ const searchOMDB = async searchTerm => {
     Language: ${data.Language}
     Plot: ${data.Plot}
     Actors: ${data.Actors}
-    `);
+    `;
+    console.log(dataString);
+    logDataToFile('movieLog.txt', dataString);
   } catch (err) {
     // log errors if there is an error
     console.log(err);
@@ -111,14 +115,16 @@ const searchBandsInTown = async searchTerm => {
         'MM/DD/YYYY'
       );
 
-      console.log(`
+      const dataString = `
       Lineup: ${concert.lineup.join(', ')}
       Venue: ${concert.venue.name}
       Location: ${concert.venue.city}, ${concert.venue.region}, ${
         concert.venue.country
       }
       Date: ${date}
-      `);
+      `;
+      console.log(dataString);
+      logDataToFile('concertLog.txt', dataString);
     });
     // catch is basically your .catch
   } catch (err) {
@@ -144,6 +150,16 @@ const doWhatItSays = () => {
     } else {
       console.log('too many words for liri to understand.');
     }
+  });
+};
+
+const logDataToFile = (fileName, data) => {
+  fs.appendFile(fileName, data, err => {
+    if (err) {
+      return console.log(err);
+    }
+
+    console.log(`${fileName} was updated`);
   });
 };
 

@@ -1,0 +1,101 @@
+
+      Artist(s): Nirvana
+      Song: Lithium
+      Preview URL: null
+      Album: Nevermind (Remastered)
+          
+      Artist(s): Evanescence
+      Song: Lithium
+      Preview URL: null
+      Album: The Open Door
+          
+      Artist(s): Evanescence
+      Song: Lithium
+      Preview URL: https://p.scdn.co/mp3-preview/fa7de9532d95e7656542dab27a2bcb603eadb4d7?cid=34e84d93de6a4650815e5420e0361fd3
+      Album: Synthesis
+          
+      Artist(s): Nirvana
+      Song: Lithium
+      Preview URL: null
+      Album: Nevermind
+          
+      Artist(s): BONES
+      Song: Lithium
+      Preview URL: https://p.scdn.co/mp3-preview/c52c5b5630bf4b12f6ad022c1e2b1f2cab9ebf9b?cid=34e84d93de6a4650815e5420e0361fd3
+      Album: UnderTheWillowTree
+          
+      Artist(s): Orwel
+      Song: Lithium
+      Preview URL: https://p.scdn.co/mp3-preview/e65910266f4bbca4a8ef46a338008446c51673c0?cid=34e84d93de6a4650815e5420e0361fd3
+      Album: Lithium
+          
+      Artist(s): Nirvana
+      Song: Lithium
+      Preview URL: null
+      Album: Nevermind (Super Deluxe Edition)
+          
+      Artist(s): Nirvana
+      Song: Lithium
+      Preview URL: null
+      Album: Nirvana
+          
+      Artist(s): Odd Mob
+      Song: Lithium
+      Preview URL: https://p.scdn.co/mp3-preview/661604957bef81a95f972b47d4346a8fd4646ad7?cid=34e84d93de6a4650815e5420e0361fd3
+      Album: Diffusion
+          
+      Artist(s): Nirvana
+      Song: Lithium - 1992/Live at Reading
+      Preview URL: null
+      Album: Live at Reading
+          
+      Artist(s): Donovan Raitt
+      Song: Lithium
+      Preview URL: https://p.scdn.co/mp3-preview/506d974a5057a08cf1570301df0499184a0a34aa?cid=34e84d93de6a4650815e5420e0361fd3
+      Album: Lithium
+          
+      Artist(s): Method Man,Intell,Snoop Dogg
+      Song: Episode 2 - Eastside
+      Preview URL: https://p.scdn.co/mp3-preview/d646503e383c5b90fc3fb92b90ccaec6fc77a94b?cid=34e84d93de6a4650815e5420e0361fd3
+      Album: Meth Lab Season 2: The Lithium
+          
+      Artist(s): Nirvana
+      Song: Lithium - Live At The Paramount/1991
+      Preview URL: null
+      Album: Live At The Paramount
+          
+      Artist(s): Nirvana
+      Song: Lithium
+      Preview URL: null
+      Album: Nevermind (Deluxe Edition)
+          
+      Artist(s): Maxence Cyrin
+      Song: Lithium
+      Preview URL: https://p.scdn.co/mp3-preview/cd6661472c663705f79edd446bf0c48f6d64f94a?cid=34e84d93de6a4650815e5420e0361fd3
+      Album: Novö Piano
+          
+      Artist(s): Rockabye Baby!
+      Song: Lithium
+      Preview URL: https://p.scdn.co/mp3-preview/a246373dc0aae3b5844105526abb79df20702e16?cid=34e84d93de6a4650815e5420e0361fd3
+      Album: Lullaby Renditions of Nirvana
+          
+      Artist(s): Method Man,Sheek Louch,Hanz On
+      Song: Episode 12 - Lithium
+      Preview URL: https://p.scdn.co/mp3-preview/e5f1440b1c048cf679246e538f1d9178285644a8?cid=34e84d93de6a4650815e5420e0361fd3
+      Album: Meth Lab Season 2: The Lithium
+          
+      Artist(s): Method Man
+      Song: Episode 3 - Grand Prix
+      Preview URL: https://p.scdn.co/mp3-preview/07cacc7da2d32caeacfb052faf5552578cabc62c?cid=34e84d93de6a4650815e5420e0361fd3
+      Album: Meth Lab Season 2: The Lithium
+          
+      Artist(s): Nirvana
+      Song: Lithium
+      Preview URL: null
+      Album: Lithium
+          
+      Artist(s): Evanescence
+      Song: Lithium - Live
+      Preview URL: https://p.scdn.co/mp3-preview/291871d0d6a50186197490b4536c19c041896d51?cid=34e84d93de6a4650815e5420e0361fd3
+      Album: Synthesis Live
+          

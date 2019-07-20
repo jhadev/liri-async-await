@@ -1,0 +1,96 @@
+
+      Lineup: Weezer
+      Venue: North Dakota State Fair Center
+      Location: Minot, ND, United States
+      Date: 07/27/2019
+      
+      Lineup: Weezer
+      Venue: Festivent Ville de Lévis
+      Location: Levis, , Canada
+      Date: 08/03/2019
+      
+      Lineup: Weezer
+      Venue: Incheon Pentaport Rock Festival 
+      Location: Incheon, , South Korea
+      Date: 08/11/2019
+      
+      Lineup: Weezer
+      Venue: Musikfest
+      Location: Bethlehem, PA, United States
+      Date: 08/05/2019
+      
+      Lineup: Weezer
+      Venue: Toyosu PIT
+      Location: Kōtō-ku, Tōkyō-to, Japan
+      Date: 08/14/2019
+      
+      Lineup: Weezer
+      Venue: Jazz Aspen Snowmass
+      Location: Snowmass, CO, United States
+      Date: 08/30/2019
+      
+      Lineup: Weezer
+      Venue: Summer Sonic
+      Location: Chiba-shi, Chiba-ken, Japan
+      Date: 08/16/2019
+      
+      Lineup: Weezer
+      Venue: Summer Sonic
+      Location: Osaka-shi, Ōsaka-fu, Japan
+      Date: 08/18/2019
+      
+      Lineup: Weezer
+      Venue: Washington State Fair Events Center
+      Location: Puyallup, WA, United States
+      Date: 09/01/2019
+      
+      Lineup: Weezer
+      Venue: Ginásio do Ibirapuera
+      Location: Sao Paulo, , Brazil
+      Date: 09/26/2019
+      
+      Lineup: Weezer
+      Venue: Movistar Arena
+      Location: Santiago, , Chile
+      Date: 09/24/2019
+      
+      Lineup: Weezer
+      Venue: Rock in Rio
+      Location: Rio De Janeiro, , Brazil
+      Date: 09/28/2019
+      
+      Lineup: Weezer, Foo Fighters, Tenacious D
+      Venue: Estadio El Campín
+      Location: Bogota, , Colombia
+      Date: 10/01/2019
+      
+      Lineup: Weezer, Foo Fighters
+      Venue: Estadio Nacional de Costa Rica
+      Location: San Jose, , Costa Rica
+      Date: 10/04/2019
+      
+      Lineup: Weezer
+      Venue: Jockey Club
+      Location: Lima, , Peru
+      Date: 09/22/2019
+      
+      Lineup: Weezer
+      Venue: Corona Capital
+      Location: Granjas México, , Mexico
+      Date: 11/16/2019
+      
+      Lineup: MGMT
+      Venue: Summer Sonic Tokyo
+      Location: 美浜区, 千葉県, 日本
+      Date: 08/16/2019
+      
+      Lineup: MGMT
+      Venue: Wonderfront Music Festival
+      Location: San Diego, CA, United States
+      Date: 11/22/2019
+      
+      Lineup: MGMT
+      Venue: Summer Sonic Osaka
+      Location: Osaka-shi, Ōsaka-fu, Japan
+      Date: 08/18/2019
+      
