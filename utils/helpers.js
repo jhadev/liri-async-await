@@ -35,7 +35,7 @@ const searchSpotify = searchTerm => {
           `;
       // artists come back as an array of objects, we can use map to only get the name
       console.log(dataString);
-      logDataToFile('spotifyLog.txt', dataString);
+      logDataToFile('./logs/spotifyLog.txt', dataString);
     });
   };
   // call spotify method with the parameters and action to run.
@@ -67,7 +67,7 @@ const searchOMDB = async searchTerm => {
     Actors: ${data.Actors}
     `;
     console.log(dataString);
-    logDataToFile('movieLog.txt', dataString);
+    logDataToFile('./logs/movieLog.txt', dataString);
   } catch (err) {
     // log errors if there is an error
     console.log(err);
@@ -99,12 +99,33 @@ const searchBandsInTown = async searchTerm => {
       Date: ${date}
       `;
       console.log(dataString);
-      logDataToFile('concertLog.txt', dataString);
+      logDataToFile('./logs/concertLog.txt', dataString);
     });
     // catch is basically your .catch
   } catch (err) {
     console.log(err);
   }
+};
+
+const doWhatItSays = callback => {
+  fs.readFile('random.txt', 'utf8', (err, data) => {
+    console.log(data);
+    if (err) {
+      console.log(err);
+    }
+
+    const fileData = data.split(',');
+    // same as saying const command = fileData[0] and const fileTerm = fileData[1] but we can do it inline.
+    const [command, fileTerm] = fileData;
+
+    if (fileData.length === 2) {
+      callback(command, fileTerm);
+    } else if (fileData.length === 1) {
+      callback(command);
+    } else {
+      console.log("liri can't interpret this file");
+    }
+  });
 };
 
 const logDataToFile = (fileName, data) => {
@@ -123,5 +144,6 @@ module.exports = {
   searchSpotify,
   searchBandsInTown,
   searchOMDB,
-  logDataToFile
+  logDataToFile,
+  doWhatItSays
 };

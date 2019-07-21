@@ -1,10 +1,10 @@
 require('dotenv').config();
-const fs = require('fs');
 // require our helper functions
 const {
   searchSpotify,
   searchOMDB,
-  searchBandsInTown
+  searchBandsInTown,
+  doWhatItSays
 } = require('./utils/helpers');
 
 const command = process.argv[2];
@@ -24,7 +24,8 @@ const dispatch = (command, searchTerm) => {
       searchBandsInTown(searchTerm);
       break;
     case 'do-what-it-says':
-      doWhatItSays(searchTerm);
+      // pass the dispatch func in as the callback
+      doWhatItSays(dispatch);
       break;
     default:
       console.log('Command not found.');
@@ -32,26 +33,6 @@ const dispatch = (command, searchTerm) => {
 };
 
 // need to leave this here because we don't export dispatch
-const doWhatItSays = () => {
-  fs.readFile('random.txt', 'utf8', (err, data) => {
-    console.log(data);
-    if (err) {
-      console.log(err);
-    }
-
-    const fileData = data.split(',');
-    // same as saying const command = fileData[0] and const fileTerm = fileData[1] but we can do it inline.
-    const [command, fileTerm] = fileData;
-
-    if (fileData.length === 2) {
-      dispatch(command, fileTerm);
-    } else if (fileData.length === 1) {
-      dispatch(command);
-    } else {
-      console.log('too many words for liri to understand.');
-    }
-  });
-};
 
 // run dispatch to start
 dispatch(command, searchTerm);
