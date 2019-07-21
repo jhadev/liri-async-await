@@ -24,12 +24,12 @@ const searchSpotify = async searchTerm => {
   const [spotifyErr, spotifyResponse] = await handlePromise(
     spotify.search(params)
   );
-
+  // if promise rejects console.log it and return to stop here
   if (spotifyErr) {
     console.log(spotifyErr);
     return;
   }
-
+  // use object destructuring to grab items array and store it in a variable with the same name
   const { items } = spotifyResponse.tracks;
 
   items.forEach(song => {
@@ -56,7 +56,7 @@ const searchOMDB = async searchTerm => {
 
   // destructure array from promise handler
   const [omdbErr, omdbResponse] = await handlePromise(axios.get(url));
-
+  // if promise rejects console.log it and return to stop here
   if (omdbErr) {
     console.log(omdbErr);
     return;
@@ -84,14 +84,15 @@ const searchBandsInTown = async searchTerm => {
   }
 
   const url = `https://rest.bandsintown.com/artists/${searchTerm}/events?app_id=codingbootcamp`;
-  // try block is basically your .then
 
-  const [bandInTownErr, bandsInTownResponse] = await handlePromise(
+  const [bandsInTownErr, bandsInTownResponse] = await handlePromise(
     axios.get(url)
   );
 
-  if (bandInTownErr) {
-    console.log(bandInTownErr);
+  // if promise rejects console.log it and return to stop here
+  if (bandsInTownErr) {
+    console.log(bandsInTownErr);
+    return;
   }
 
   const { data } = bandsInTownResponse;
@@ -112,9 +113,9 @@ Date: ${date}
     console.log(dataString);
     logDataToFile('./logs/concertLog.txt', dataString);
   });
-  // catch is basically your .catch
 };
 
+// pass in our callback into this function. it is a placeholder for the dispatch function in liri.js
 const doWhatItSays = callback => {
   fs.readFile('random.txt', 'utf8', (err, data) => {
     console.log(data);
