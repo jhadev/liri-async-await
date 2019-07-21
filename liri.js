@@ -29,7 +29,6 @@ const dispatch = (command, searchTerm) => {
   }
 };
 
-// spotify function doesn't need to be defined as async because node-spotify-api accepts a callback in its search method.
 const searchSpotify = async searchTerm => {
   const spotify = new Spotify(keys.spotify);
   //if there is no song input then default to Lithium
@@ -42,7 +41,7 @@ const searchSpotify = async searchTerm => {
     type: 'track',
     query: searchTerm
   };
-
+  // try is what to run if the promise resolves
   try {
     // await response from spotify
     const response = await spotify.search(params);
@@ -62,6 +61,7 @@ Album: ${song.album.name}
       // simplest way to do this, there is definitely a more efficient way.
       logDataToFile('./logs/spotifyLog.txt', dataString);
     });
+    // catch errors here
   } catch (err) {
     console.log(err);
   }
