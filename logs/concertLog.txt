@@ -78,3 +78,18 @@ Lineup: Weezer
 Venue: Corona Capital
 Location: Granjas México, , Mexico
 Date: 11/16/2019
+
+Lineup: MGMT
+Venue: Summer Sonic Tokyo
+Location: 美浜区, 千葉県, 日本
+Date: 08/16/2019
+
+Lineup: MGMT
+Venue: Summer Sonic Osaka
+Location: Osaka-shi, Ōsaka-fu, Japan
+Date: 08/18/2019
+
+Lineup: MGMT
+Venue: Wonderfront Music Festival
+Location: San Diego, CA, United States
+Date: 11/22/2019

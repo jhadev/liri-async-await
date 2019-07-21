@@ -3,9 +3,11 @@ const fs = require('fs');
 const Spotify = require('node-spotify-api');
 const axios = require('axios');
 const moment = require('moment');
+// with the promise handler we can get rid of the try/catch blocks
+const handlePromise = require('./promise-handler');
 
 // spotify function doesn't need to be defined as async because node-spotify-api accepts a callback in its search method.
-const searchSpotify = searchTerm => {
+const searchSpotify = async searchTerm => {
   const spotify = new Spotify(keys.spotify);
   //if there is no song input then default to Lithium
   if (!searchTerm) {
@@ -18,28 +20,29 @@ const searchSpotify = searchTerm => {
     query: searchTerm
   };
 
-  // our callback function to pass into spotify search method which will handle printing data to the console.
-  const action = (err, data) => {
-    // if there's an error stop the code from running
-    if (err) {
-      throw err;
-    }
-    const { items } = data.tracks;
+  // destructure array from promise handler. if the promise rejects [0] will be truthy [1] will be null, and reverse if it resolves. looks synchronous right?
+  const [spotifyErr, spotifyResponse] = await handlePromise(
+    spotify.search(params)
+  );
 
-    items.forEach(song => {
-      const dataString = `
+  if (spotifyErr) {
+    console.log(spotifyErr);
+    return;
+  }
+
+  const { items } = spotifyResponse.tracks;
+
+  items.forEach(song => {
+    const dataString = `
 Artist(s): ${song.artists.map(artist => artist.name)}
 Song: ${song.name}
 Preview URL: ${song.preview_url}
 Album: ${song.album.name}
 `;
-      // artists come back as an array of objects, we can use map to only get the name
-      console.log(dataString);
-      logDataToFile('./logs/spotifyLog.txt', dataString);
-    });
-  };
-  // call spotify method with the parameters and action to run.
-  spotify.search(params, action);
+    // artists come back as an array of objects, we can use map to only get the name
+    console.log(dataString);
+    logDataToFile('./logs/spotifyLog.txt', dataString);
+  });
 };
 
 // axios returns a promise but we can use async await to make our code read more like
@@ -51,13 +54,18 @@ const searchOMDB = async searchTerm => {
   }
   const url = `http://www.omdbapi.com/?t=${searchTerm}&y=&plot=short&apikey=ee5329ae`;
 
-  try {
-    // await a response from omdb using axios and store it in a variable
-    const response = await axios.get(url);
-    // all the good stuff is in data this is the same as saying const data = response.data.
-    // instead we use object destructuring to grab the data object from response and store it in a variable
-    const { data } = response;
-    const dataString = `
+  // destructure array from promise handler
+  const [omdbErr, omdbResponse] = await handlePromise(axios.get(url));
+
+  if (omdbErr) {
+    console.log(omdbErr);
+    return;
+  }
+  // all the good stuff is in data this is the same as saying const data = response.data.
+  // instead we use object destructuring to grab the data object from response and store it in a variable
+
+  const { data } = omdbResponse;
+  const dataString = `
 Title: ${data.Title}
 Year: ${data.Year}
 IMDB Rating: ${data.imdbRating}
@@ -66,12 +74,8 @@ Language: ${data.Language}
 Plot: ${data.Plot}
 Actors: ${data.Actors}
 `;
-    console.log(dataString);
-    logDataToFile('./logs/movieLog.txt', dataString);
-  } catch (err) {
-    // log errors if there is an error
-    console.log(err);
-  }
+  console.log(dataString);
+  logDataToFile('./logs/movieLog.txt', dataString);
 };
 
 const searchBandsInTown = async searchTerm => {
@@ -81,30 +85,34 @@ const searchBandsInTown = async searchTerm => {
 
   const url = `https://rest.bandsintown.com/artists/${searchTerm}/events?app_id=codingbootcamp`;
   // try block is basically your .then
-  try {
-    const response = await axios.get(url);
-    const { data } = response;
 
-    data.forEach(concert => {
-      const date = moment(concert.datetime, 'YYYY-MM-DDTHH:mm:ss').format(
-        'MM/DD/YYYY'
-      );
+  const [bandInTownErr, bandsInTownResponse] = await handlePromise(
+    axios.get(url)
+  );
 
-      const dataString = `
+  if (bandInTownErr) {
+    console.log(bandInTownErr);
+  }
+
+  const { data } = bandsInTownResponse;
+
+  data.forEach(concert => {
+    const date = moment(concert.datetime, 'YYYY-MM-DDTHH:mm:ss').format(
+      'MM/DD/YYYY'
+    );
+
+    const dataString = `
 Lineup: ${concert.lineup.join(', ')}
 Venue: ${concert.venue.name}
 Location: ${concert.venue.city}, ${concert.venue.region}, ${
-        concert.venue.country
-      }
+      concert.venue.country
+    }
 Date: ${date}
 `;
-      console.log(dataString);
-      logDataToFile('./logs/concertLog.txt', dataString);
-    });
-    // catch is basically your .catch
-  } catch (err) {
-    console.log(err);
-  }
+    console.log(dataString);
+    logDataToFile('./logs/concertLog.txt', dataString);
+  });
+  // catch is basically your .catch
 };
 
 const doWhatItSays = callback => {
