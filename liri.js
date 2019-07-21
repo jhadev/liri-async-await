@@ -22,7 +22,7 @@ const dispatch = (command, searchTerm) => {
       searchBandsInTown(searchTerm);
       break;
     case 'do-what-it-says':
-      doWhatItSays(searchTerm);
+      doWhatItSays();
       break;
     default:
       console.log('Command not found.');
