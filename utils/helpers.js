@@ -6,20 +6,17 @@ const moment = require('moment');
 // with the promise handler we can get rid of the try/catch blocks
 const handlePromise = require('./promise-handler');
 
-// spotify function doesn't need to be defined as async because node-spotify-api accepts a callback in its search method.
 const searchSpotify = async searchTerm => {
   const spotify = new Spotify(keys.spotify);
   //if there is no song input then default to Lithium
   if (!searchTerm) {
     searchTerm = 'Lithium';
   }
-
   // the params object to pass into spotify search method. Defining it as a variable to make it easier to read
   const params = {
     type: 'track',
     query: searchTerm
   };
-
   // destructure array from promise handler. if the promise rejects [0] will be truthy [1] will be null, and reverse if it resolves. looks synchronous right?
   const [spotifyErr, spotifyResponse] = await handlePromise(
     spotify.search(params)
@@ -31,15 +28,15 @@ const searchSpotify = async searchTerm => {
   }
   // use object destructuring to grab items array and store it in a variable with the same name
   const { items } = spotifyResponse.tracks;
-
+  // loop through the items array.
   items.forEach(song => {
+    // artists come back as an array of objects, we can use map to only get the name
     const dataString = `
 Artist(s): ${song.artists.map(artist => artist.name)}
 Song: ${song.name}
 Preview URL: ${song.preview_url}
 Album: ${song.album.name}
 `;
-    // artists come back as an array of objects, we can use map to only get the name
     console.log(dataString);
     logDataToFile('./logs/spotifyLog.txt', dataString);
   });
