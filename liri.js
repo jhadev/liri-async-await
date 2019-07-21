@@ -29,8 +29,7 @@ const dispatch = (command, searchTerm) => {
   }
 };
 
-// spotify function doesn't need to be defined as async because node-spotify-api accepts a callback in its search method.
-const searchSpotify = searchTerm => {
+const searchSpotify = async searchTerm => {
   const spotify = new Spotify(keys.spotify);
   //if there is no song input then default to Lithium
   if (!searchTerm) {
@@ -43,26 +42,24 @@ const searchSpotify = searchTerm => {
     query: searchTerm
   };
 
-  // our callback function to pass into spotify search method which will handle printing data to the console.
-  const action = (err, data) => {
-    // if there's an error stop the code from running
-    if (err) {
-      throw err;
-    }
-    const { items } = data.tracks;
+  try {
+    // call spotify method with the parameters and action to run.
+    const response = await spotify.search(params);
+
+    const { items } = response.tracks;
 
     items.forEach(song => {
       // artists come back as an array of objects, we can use map to only get the name
       console.log(`
-  Artist(s): ${song.artists.map(artist => artist.name)}
-  Song: ${song.name}
-  Preview URL: ${song.preview_url}
-  Album: ${song.album.name}
+      Artist(s): ${song.artists.map(artist => artist.name)}
+      Song: ${song.name}
+      Preview URL: ${song.preview_url}
+      Album: ${song.album.name}
       `);
     });
-  };
-  // call spotify method with the parameters and action to run.
-  spotify.search(params, action);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 // axios returns a promise but we can use async await to make our code read more like
