@@ -28,11 +28,11 @@ const searchSpotify = searchTerm => {
 
     items.forEach(song => {
       const dataString = `
-      Artist(s): ${song.artists.map(artist => artist.name)}
-      Song: ${song.name}
-      Preview URL: ${song.preview_url}
-      Album: ${song.album.name}
-          `;
+Artist(s): ${song.artists.map(artist => artist.name)}
+Song: ${song.name}
+Preview URL: ${song.preview_url}
+Album: ${song.album.name}
+`;
       // artists come back as an array of objects, we can use map to only get the name
       console.log(dataString);
       logDataToFile('./logs/spotifyLog.txt', dataString);
@@ -58,14 +58,14 @@ const searchOMDB = async searchTerm => {
     // instead we use object destructuring to grab the data object from response and store it in a variable
     const { data } = response;
     const dataString = `
-    Title: ${data.Title}
-    Year: ${data.Year}
-    IMDB Rating: ${data.imdbRating}
-    Country: ${data.Country}
-    Language: ${data.Language}
-    Plot: ${data.Plot}
-    Actors: ${data.Actors}
-    `;
+Title: ${data.Title}
+Year: ${data.Year}
+IMDB Rating: ${data.imdbRating}
+Country: ${data.Country}
+Language: ${data.Language}
+Plot: ${data.Plot}
+Actors: ${data.Actors}
+`;
     console.log(dataString);
     logDataToFile('./logs/movieLog.txt', dataString);
   } catch (err) {
@@ -91,13 +91,13 @@ const searchBandsInTown = async searchTerm => {
       );
 
       const dataString = `
-      Lineup: ${concert.lineup.join(', ')}
-      Venue: ${concert.venue.name}
-      Location: ${concert.venue.city}, ${concert.venue.region}, ${
+Lineup: ${concert.lineup.join(', ')}
+Venue: ${concert.venue.name}
+Location: ${concert.venue.city}, ${concert.venue.region}, ${
         concert.venue.country
       }
-      Date: ${date}
-      `;
+Date: ${date}
+`;
       console.log(dataString);
       logDataToFile('./logs/concertLog.txt', dataString);
     });
