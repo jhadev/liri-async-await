@@ -90,7 +90,7 @@ Country: ${data.Country}
 Language: ${data.Language}
 Plot: ${data.Plot}
 Actors: ${data.Actors}
-    `;
+`;
     console.log(dataString);
     logDataToFile('./logs/movieLog.txt', dataString);
   } catch (err) {
@@ -138,6 +138,9 @@ const doWhatItSays = () => {
     if (err) {
       console.log(err);
     }
+
+    // THERE IS A POTENTIAL BUG HERE.
+    // WILL CAUSE AN INFINITE LOOP
 
     const fileData = data.split(',');
     // same as saying const command = fileData[0] and const fileTerm = fileData[1] but we can do it inline.
