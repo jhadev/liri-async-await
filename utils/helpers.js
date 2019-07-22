@@ -108,6 +108,8 @@ Date: ${date}
 };
 
 const doWhatItSays = callback => {
+  // there is a potential bug here if do-what-it-says is the command in the file.
+  // we will enter an infinite loop because we are calling dispatch to route the command, which will route us right back here.
   fs.readFile('random.txt', 'utf8', (err, data) => {
     console.log(data);
     if (err) {
@@ -117,6 +119,9 @@ const doWhatItSays = callback => {
     const fileData = data.split(',');
     // same as saying const command = fileData[0] and const fileTerm = fileData[1] but we can do it inline.
     const [command, fileTerm] = fileData;
+
+    // THERE IS A POTENTIAL BUG THAT WILL ARISE HERE.
+    // HINT: RECURSION ALWAYS NEEDS AN EXIT CONDITION.
 
     if (fileData.length === 2) {
       callback(command, fileTerm);

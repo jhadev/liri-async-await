@@ -24,15 +24,14 @@ const dispatch = (command, searchTerm) => {
       searchBandsInTown(searchTerm);
       break;
     case 'do-what-it-says':
-      // pass the dispatch func in as the callback
+      // pass the dispatch func in as the callback.
+      // this will create an edge case in our app.
       doWhatItSays(dispatch);
       break;
     default:
       console.log('Command not found.');
   }
 };
-
-// need to leave this here because we don't export dispatch
 
 // run dispatch to start
 dispatch(command, searchTerm);
