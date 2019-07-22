@@ -120,9 +120,6 @@ const doWhatItSays = callback => {
     // same as saying const command = fileData[0] and const fileTerm = fileData[1] but we can do it inline.
     const [command, fileTerm] = fileData;
 
-    // THERE IS A POTENTIAL BUG THAT WILL ARISE HERE.
-    // HINT: RECURSION ALWAYS NEEDS AN EXIT CONDITION.
-
     if (fileData.length === 2) {
       callback(command, fileTerm);
     } else if (fileData.length === 1) {
