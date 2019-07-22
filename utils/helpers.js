@@ -120,6 +120,9 @@ const doWhatItSays = callback => {
       console.log(err);
     }
 
+    // THERE IS A POTENTIAL BUG HERE.
+    // WILL CAUSE AN INFINITE LOOP
+
     const fileData = data.split(',');
     // same as saying const command = fileData[0] and const fileTerm = fileData[1] but we can do it inline.
     const [command, fileTerm] = fileData;

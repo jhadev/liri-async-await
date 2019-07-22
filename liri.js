@@ -32,7 +32,5 @@ const dispatch = (command, searchTerm) => {
   }
 };
 
-// need to leave this here because we don't export dispatch
-
 // run dispatch to start
 dispatch(command, searchTerm);
